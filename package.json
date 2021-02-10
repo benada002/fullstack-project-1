@@ -1,0 +1,12 @@
+{
+  "name": "fullstack",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna run build",
+    "dev": "lerna run dev --parallel"
+  }
+}
