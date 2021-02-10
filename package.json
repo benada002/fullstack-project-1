@@ -5,8 +5,9 @@
     "lerna": "^3.22.1"
   },
   "scripts": {
-    "bootstrap": "lerna bootstrap",
+    "bootstrap": "lerna bootstrap --hoist",
     "build": "lerna run build",
-    "dev": "lerna run dev --parallel"
+    "dev": "lerna run dev --parallel",
+    "postinstall": "npm run bootstrap"
   }
 }
