@@ -1,0 +1,29 @@
+{
+  "name": "@fp1/graphql",
+  "version": "0.1.0",
+  "private": true,
+  "main": "build/graphql.js",
+  "typings": "build/graphql.d.ts",
+  "devDependencies": {
+    "@graphql-codegen/cli": "1.20.1",
+    "@graphql-codegen/typescript": "1.21.0",
+    "@graphql-codegen/typescript-operations": "1.17.14",
+    "@graphql-codegen/typescript-react-apollo": "2.2.1",
+    "concurrently": "^6.0.0",
+    "typescript": "^4.1.5",
+    "watch": "^1.0.2"
+  },
+  "dependencies": {
+    "graphql": "^15.5.0"
+  },
+  "peerDependencies": {
+    "@apollo/client": "^3.3.11"
+  },
+  "scripts": {
+    "generate": "graphql-codegen --config codegen.yml",
+    "generate-watch": "watch 'npm run generate' src/graphql",
+    "tsc-watch": "tsc -w",
+    "build": "npm run generate && tsc",
+    "dev": "concurrently -r -k \"npm run generate-watch\" \"npm run tsc-watch\""
+  }
+}
