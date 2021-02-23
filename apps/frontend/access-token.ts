@@ -1,19 +1,14 @@
 const accessTokenManager = (() => {
   let accessToken = '';
 
-  const setAccessToken = (token: string) => {
+  const setAccessToken = (token = '') => {
     accessToken = token;
-  };
-
-  const deleteAccessToken = () => {
-    accessToken = '';
   };
 
   const getAccessToken = () => accessToken;
 
   return {
     setAccessToken,
-    deleteAccessToken,
     getAccessToken,
   };
 })();
