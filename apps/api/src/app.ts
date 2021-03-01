@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import { createConnection, getRepository } from 'typeorm';
 import { buildSchema } from 'type-graphql';
 import { verify } from 'jsonwebtoken';
+import cors from 'cors';
 import Post from './entities/Post';
 import Sub from './entities/Sub';
 import Tag from './entities/Tag';
@@ -49,9 +50,14 @@ const main = async () => {
 
     const app = express();
 
+    app.use(cors({
+      origin: 'http://localhost:3000',
+      credentials: true,
+    }));
+
     app.use(cookieParser());
 
-    app.post('/refresh-tokens', async (req, res) => {
+    app.post('/refresh-token', async (req, res) => {
       const token = req.cookies[REFRESH_TOKEN_COOKIE_NAME];
 
       try {
@@ -88,7 +94,6 @@ const main = async () => {
 
         try {
           payload = verifyAccessTokenAndGetPayload(req);
-
           // eslint-disable-next-line
         } catch {}
 
@@ -100,7 +105,7 @@ const main = async () => {
       },
     });
 
-    apolloServer.applyMiddleware({ app });
+    apolloServer.applyMiddleware({ app, cors: false });
 
     app.listen(PORT, () => {
       console.log(`up on ${PORT}`);

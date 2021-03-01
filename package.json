@@ -2,8 +2,8 @@
   "name": "fp1",
   "private": true,
   "workspaces": [
-    "./apps/*",
-    "./packages/*"
+    "apps/*",
+    "packages/*"
   ],
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.15.1",
@@ -17,6 +17,6 @@
   },
   "scripts": {
     "build": "lerna run build",
-    "dev": "lerna run dev --parallel"
+    "dev": "lerna run dev --stream --include-dependencies"
   }
 }
